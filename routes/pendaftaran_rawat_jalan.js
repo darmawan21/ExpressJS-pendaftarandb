@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var PendaftaranRawatJalan = require("../models/pendaftaran_rawat_jalan");
+var Pendaftaran_Rawat_Jalan = require("../models/pendaftaran_rawat_jalan");
 
 /*TAMPIL DATA Pendaftaran Rawat Jalan. */
 router.get('/', function(req, res, next) {
-PendaftaranRawatJalan.findAndCountAll().then(data => {
+Pendaftaran_Rawat_Jalan.findAndCountAll().then(data => {
     res.json({
       status: true,
       pesan: "Berhasil Tampil",
@@ -22,7 +22,7 @@ PendaftaranRawatJalan.findAndCountAll().then(data => {
 
 /* TAMBAH DATA Pendaftaran Rawat Jalan. */
 router.post('/', function(req, res, next) {
-PendaftaranRawatJalan.create(req.body).then(data => {
+Pendaftaran_Rawat_Jalan.create(req.body).then(data => {
     res.json({
       status: true,
       pesan: "Berhasil Ditambah",
@@ -39,7 +39,7 @@ PendaftaranRawatJalan.create(req.body).then(data => {
 
 /* UBAH DATA Pendaftaran Rawat Jalan. */
 router.put('/', function(req, res, next) {
-PendaftaranRawatJalan.update(req.body, {
+Pendaftaran_Rawat_Jalan.update(req.body, {
     where : {id:req.body.id}
   }).then(data => {
     res.json({
@@ -58,7 +58,7 @@ PendaftaranRawatJalan.update(req.body, {
 
 /* HAPUS DATA Pendaftaran Rawat Jalan. */
 router.delete('/', function(req, res, next) {
-PendaftaranRawatJalan.destroy({
+Pendaftaran_Rawat_Jalan.destroy({
     where : {id:req.body.id}
   }).then(data => {
     res.json({
