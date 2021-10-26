@@ -40,7 +40,7 @@ router.post('/', function(req, res, next) {
 /* UBAH DATA PASIEN. */
 router.put('/', function(req, res, next) {
   Pasiens.update(req.body, {
-    where : {id:req.body.id}
+    where : {no_rm:req.body.no_rm}
   }).then(data => {
     res.json({
       status: true,
@@ -59,7 +59,7 @@ router.put('/', function(req, res, next) {
 /* HAPUS DATA PASIEN. */
 router.delete('/', function(req, res, next) {
   Pasiens.destroy({
-    where : {id:req.body.id}
+    where : {no_rm:req.body.no_rm}
   }).then(data => {
     res.json({
       status: true,
