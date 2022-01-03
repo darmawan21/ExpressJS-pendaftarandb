@@ -1,11 +1,11 @@
 var express = require('express');
+const { route } = require('.');
 var router = express.Router();
-var Pasiens = require("../models/pasiens");
-const { options } = require('./pendaftaran_rawat_jalan');
+var Poli = require("../models/poli");
 
-/*TAMPIL DATA PASIEN. */
+/*TAMPIL DATA Poli. */
 router.get('/', function(req, res, next) {
-  Pasiens.findAndCountAll().then(data => {
+  Poli.findAndCountAll().then(data => {
     res.json({
       status: true,
       pesan: "Berhasil Tampil",
@@ -21,27 +21,27 @@ router.get('/', function(req, res, next) {
   });
 });
 
-/* TAMBAH DATA PASIEN. */
+/* Tambah Data Poli. */
 router.post('/', function(req, res, next) {
-  Pasiens.create(req.body).then(data => {
+  Poli.create(req.body).then(data => {
     res.json({
       status: true,
-      pesan: "Berhasil Ditambah",
+      pesan: "Berhasil Tambah",
       data:data
     });
   }).catch(salahnya=>{
     res.json({
       status: false,
-      pesan: "Gagal Tampil: " + salahnya.message,
-      data: req.body
+      pesan: "Gagal Tambah: " + salahnya.message,
+      data:req.body
     });
   });
 });
 
-/* UBAH DATA PASIEN. */
+/* Ubah Data Poli. */
 router.put('/', function(req, res, next) {
-  Pasiens.update(req.body, {
-    where : {no_rm:req.body.no_rm}
+  Poli.update(req.body, {
+    where : {id:req.body.id}
   }).then(data => {
     res.json({
       status: true,
@@ -57,10 +57,10 @@ router.put('/', function(req, res, next) {
   });
 });
 
-/* HAPUS DATA PASIEN. */
+/* Delete Data Poli. */
 router.delete('/', function(req, res, next) {
-  Pasiens.destroy({
-    where : {no_rm:req.body.no_rm}
+  Poli.destroy({
+    where : {id:req.body.id}
   }).then(data => {
     res.json({
       status: true,
@@ -76,45 +76,30 @@ router.delete('/', function(req, res, next) {
   });
 });
 
-router.get('/options', function(req, res, next) {
-  Pasiens.findAll().then( async data => {
+router.get('/options', function(req,res,next){
+  Poli.findAll().then( data => {
 
-    var options = [];
-    await data.forEach( async (item) => {
-        var itemBaru = {id:item.no_rm, value:item.no_rm+" - "+item.nama} 
-        await options.push(itemBaru)
+    var options = data.map(item=>{
+      return {
+        id:item.id,
+        value:item.nama
+      }
     });
 
     res.json({
       status: true,
-      pesan: "Berhasil Tampil",
-      data:options,
+      pesan: "Berhasil Tampil Options",
+      data: options
     });
-  }).catch(salahnya=>{
-    res.json({
-      status: false,
-      pesan: "Gagal Tampil: " + salahnya.message,
-      data: []
-    });
-  });
-});
 
-router.get('/tampil/:no_rm', function(req, res, next){
-  var no_rm = req.params.no_rm;
-  Pasiens.findByPk(no_rm).then( data => {
-    res.json({
-      status: true,
-      pesan: "Berhasil Tampil",
-      data: data
-    });
-  }).catch( err => {
+  }).catch (err =>{
     res.json({
       status: false,
       pesan: "Gagal Tampil: " + err.message,
       data: []
     });
   });
-});
 
+});
 
 module.exports = router;

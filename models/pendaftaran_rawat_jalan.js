@@ -2,15 +2,24 @@ const { Sequelize, DataTypes } = require('sequelize');
 var koneksi = require('../koneksi.js');
 
 const Pendaftaran_Rawat_Jalan = koneksi.define('Pendaftaran_Rawat_Jalan', {
+
+  id: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true
+  },
+
   no_rm: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     allowNull: false
   },
   id_poli: {
-    type: DataTypes.INTEGER,
+    type: Sequelize.INTEGER,
     allowNull: false
   }
 }, {
+    timestamps: true,
     freezeTableName: true
 });
 
