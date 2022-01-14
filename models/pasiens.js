@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 var koneksi = require('../koneksi.js');
 
-const Pasien = koneksi.define('Pasien', {
+const pasien = koneksi.define('pasien', {
   
   no_rm: {
     type: DataTypes.STRING,
@@ -26,4 +26,4 @@ const Pasien = koneksi.define('Pasien', {
     freezeTableName: true
 });
 
-module.exports = Pasien;
+module.exports = pasien;

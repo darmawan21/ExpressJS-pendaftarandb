@@ -5,12 +5,11 @@ const { options } = require('./pendaftaran_rawat_jalan');
 
 /*TAMPIL DATA PASIEN. */
 router.get('/', function(req, res, next) {
-  Pasiens.findAndCountAll().then(data => {
+  Pasiens.findAll().then(data => {
     res.json({
       status: true,
       pesan: "Berhasil Tampil",
-      data:data.rows,
-      count: data.count
+      data:data
     });
   }).catch(salahnya=>{
     res.json({
@@ -33,7 +32,7 @@ router.post('/', function(req, res, next) {
     res.json({
       status: false,
       pesan: "Gagal Tampil: " + salahnya.message,
-      data: req.body
+      data:[]
     });
   });
 });
