@@ -75,6 +75,7 @@ router.delete('/', function(req, res, next) {
   });
 });
 
+
 router.get('/options', function(req, res, next) {
   Pasiens.findAll().then( async data => {
 
