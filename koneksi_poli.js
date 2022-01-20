@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize');
-const sequelize = new Sequelize('polidb', 'root', '', {
+const sequelize = new Sequelize('polipoli', 'root', '', {
     host: 'localhost',
     dialect: 'mysql'
 });

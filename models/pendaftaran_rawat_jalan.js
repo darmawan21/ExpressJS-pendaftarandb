@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 var koneksi = require('../koneksi.js');
 
-const pendaftaran_pawat_jalan = koneksi.define('pendaftaran_pawat_jalan', {
+const pendaftaran_Rawat_jalan = koneksi.define('pendaftaran_rawat_jalan', {
 
   id: {
     type: Sequelize.INTEGER,
@@ -23,4 +23,4 @@ const pendaftaran_pawat_jalan = koneksi.define('pendaftaran_pawat_jalan', {
     freezeTableName: true
 });
 
-module.exports = pendaftaran_pawat_jalan;
+module.exports = pendaftaran_Rawat_jalan;
